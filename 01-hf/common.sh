@@ -1,2 +1,2 @@
-PYTHON="/storage/praha1/home/hrabalm/envs/unsloth/bin/python"
+PYTHON="/storage/brno12-cerit/home/hrabalm/envs/npfl101demo/bin/python"
 SCRIPT_DIR="$PBS_O_WORKDIR"

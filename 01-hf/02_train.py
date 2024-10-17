@@ -20,6 +20,7 @@ def preprocess_function(examples):
         "text": f"Translate the following Czech sentence to English.\nCzech: {examples["source_text"]}\nEnglish: {examples["target_text"]}{EOS}",
     }
 dataset = dataset.map(preprocess_function)
+# alternative, you can pass formatting_function to SFTTrainer, see https://huggingface.co/docs/trl/main/sft_trainer#format-your-input-prompts
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -57,7 +58,7 @@ sft_config = SFTConfig(
     num_train_epochs=2,
     per_device_train_batch_size=1,
     # gradient_accumulation_steps=1,  # can be used to simulate larger batch sizes
-    output_dir="/tmp",  # where to save the model checkpoints
+    output_dir=".",  # where to save the model checkpoints
     # gradient_checkpointing=True,  # save VRAM at the cost of computation time
     seed=42,
     # save_strategy="steps",
@@ -82,3 +83,4 @@ model.save_to_disk("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model
 # - Try to disable the quantization if the model is small enough
 # - Add evaluation dataset, set eval_steps and eval_strategy
 # - Import wandb and log the training to wandb
+# - Go through the documentation https://huggingface.co/docs/trl/main/sft_trainer

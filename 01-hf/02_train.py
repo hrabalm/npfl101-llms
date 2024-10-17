@@ -76,7 +76,7 @@ trainer = SFTTrainer(
 
 trainer.train()
 
-model.save_to_disk("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model")
+model.save_pretrained("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model")
 # you can also push the model to hub, see docs
 
 # Optional exercises:

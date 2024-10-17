@@ -49,16 +49,19 @@ sft_config = SFTConfig(
     learning_rate=2e-5,
     # fp16=True,
     bf16=True,
-    optim="adamw_8bit",
+    optim="adamw_8bit",  # saves VRAM
     weight_decay=0.01,
     lr_scheduler_type="linear",
     warmup_steps=10,
-    logging_steps=0,
+    logging_steps=1,
     num_train_epochs=2,
     per_device_train_batch_size=1,
     # gradient_accumulation_steps=1,  # can be used to simulate larger batch sizes
-    output_dir="/tmp",
+    output_dir="/tmp",  # where to save the model checkpoints
     # gradient_checkpointing=True,  # save VRAM at the cost of computation time
+    seed=42,
+    # save_strategy="steps",
+    # save_steps=100,
 )
 
 trainer = SFTTrainer(
@@ -77,3 +80,5 @@ model.save_to_disk("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model
 # - Currently, we train the model by calculating the loss on all tokens (including the prompt). See https://huggingface.co/docs/trl/main/sft_trainer#train-on-completions-only for an example of how to train only on the completions.
 # - Try training on different or larger models
 # - Try to disable the quantization if the model is small enough
+# - Add evaluation dataset, set eval_steps and eval_strategy
+# - Import wandb and log the training to wandb

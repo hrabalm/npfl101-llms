@@ -5,8 +5,8 @@ username = "hrabalm"  # TODO: update username
 my_datasets = Path(f"/storage/brno12-cerit/home/{username}/datasets")
 my_datasets.mkdir(exist_ok=True, parents=True) # ensure directory exists
 
-eng = Path("./data/eng")
-ces = Path("./data/ces")
+eng = Path("./data/small.eng")
+ces = Path("./data/small.ces")
 
 def create_dataset():
     data = [{

@@ -6,19 +6,9 @@
 #PBS -m bae
 # mail on begin, abort, end
 
-echo ${PBS_O_LOGNAME:?This script must be run under PBS scheduling system, execute: qsub $0}
+source "$SCRIPT_DIR/common.sh"
 
-SECRETS_FILE="$PBS_SCRIPT_DIR/secrets.sh"
-if [ -e "$SECRETS_FILE" ]
-then
-    source "$SECRETS_FILE"
-else
-    echo "Secrets file not found: $SECRETS_FILE"
-fi
-
-source "$PBS_SCRIPT_DIR/common.sh"
-
-FILE="$PBS_SCRIPT_DIR/01_create_dataset.py"
+FILE="$SCRIPT_DIR/01_create_dataset.py"
 "$PYTHON" "$FILE"
 
 clean_scratch

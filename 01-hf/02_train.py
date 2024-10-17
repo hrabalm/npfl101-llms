@@ -4,7 +4,7 @@ from trl import SFTConfig, SFTTrainer
 from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
 import torch
 
-DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset"  # TODO: dataset name
+DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset"  # TODO: change dataset name
 
 dataset = load_from_disk(DATASET_PATH)
 # dataset = load_dataset("username/datasetname", split="train")  # you can also download the dataset from hub instead

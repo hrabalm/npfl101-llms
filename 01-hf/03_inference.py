@@ -5,9 +5,12 @@
 
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
+import sys
 
 # MODEL = "/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model"
 MODEL = "google/gemma-2-2b"
+
+print(f"Using model {MODEL}", file=sys.stderr)
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL)
 model = AutoModelForCausalLM.from_pretrained(
@@ -19,7 +22,7 @@ input_text = f"Translate the following Czech sentence to English.\nCzech: Praha 
 input_ids = tokenizer(input_text, return_tensors="pt").to("cuda")
 
 outputs = model.generate(**input_ids, max_new_tokens=32)
-print(tokenizer.decode(outputs[0]))
+print(tokenizer.decode(outputs[0]), file=sys.stderr)
 
 # Optional exercises:
 # - Try using pipeline and batching instead https://huggingface.co/docs/transformers/main_classes/pipelines#pipeline-batching

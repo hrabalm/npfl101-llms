@@ -1,5 +1,6 @@
 from pathlib import Path
 import datasets
+import sys
 
 username = "hrabalm"  # TODO: update username
 my_datasets = Path(f"/storage/brno12-cerit/home/{username}/datasets")
@@ -16,7 +17,7 @@ def create_dataset():
         "target_lang": "en",
     } for ces_text, eng_text in zip(ces.read_text().splitlines(), eng.read_text().splitlines())]
 
-    print("First five examples:", data[0:5])
+    print("First five examples:", data[0:5], file=sys.stderr)
 
     # see also from_dict, from_generator, from_pandas, etc.
     # https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset.from_dict

@@ -39,13 +39,21 @@ peft_config = LoraConfig(
     lora_alpha=32,
     lora_dropout=0.0,
     bias="none",
-    target_modules=["all-linear"],
+    target_modules="all-linear", # or list of modules
     task_type="CAUSAL_LM",
 )
 
 model = get_peft_model(model, peft_config)
 
 sft_config = SFTConfig(
+    learning_rate=2e-5,
+    # fp16=True,
+    bf16=True,
+    optim="adamw_8bit",
+    weight_decay=0.01,
+    lr_scheduler_type="linear",
+    warmup_steps=10,
+    logging_steps=0,
     num_train_epochs=2,
     per_device_train_batch_size=1,
     # gradient_accumulation_steps=1,  # can be used to simulate larger batch sizes

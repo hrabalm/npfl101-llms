@@ -26,3 +26,5 @@ print(tokenizer.decode(outputs[0]))
 #   - You could also handle the batching by yourself
 # - Look into what device_map="auto" does
 # - If you need early stopping, look into custom StoppingCriteria, note that handling batching can make it a bit more complex (you need to stop only when all batches are to supposed to stop)
+# - Experiment with your tokenizer, how well does it tokenize your language? Do spaces and newlines in the prompt matter?
+# - You can also experiment with in-context learning. Try providing the model with several examples and expected output and see how it behaves.

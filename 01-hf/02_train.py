@@ -47,6 +47,7 @@ peft_config = LoraConfig(
 model = get_peft_model(model, peft_config)
 
 sft_config = SFTConfig(
+    # max_seq_length=2048,  # you should properly set this depending on your data, task, model and VRAM
     learning_rate=2e-5,
     # fp16=True,
     bf16=True,

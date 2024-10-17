@@ -1,6 +1,6 @@
 # 01-hf
 
-For these examples, please use the zenith frontend
+For these examples, please use the zenith frontend which is located in Brno and uses brno12-cerit storage.
 
 ```bash
 ssh USERNAME@zenith.metacentrum.cz
@@ -25,8 +25,6 @@ qsub -l select=1:ncpus=1:mem=8gb:scratch_local=16gb:brno=True -I -l walltime=1:0
 # or
 qsub -l select=1:ncpus=1:mem=8gb:scratch_local=16gb:cl_adan=True -I -l walltime=1:00:00
 ```
-
-In this case, the installation should be relatively fast so we can probably get away with running it on the frontend.
 
 ## Install
 
@@ -76,10 +74,10 @@ clean_scratch
 
 ## Exercises
 
-Now you can run prepared scripts using `qsub`
+Now you can run prepared scripts using `qsub`. For example, you can run the first task like this:
 
 ```bash
-qsub # TODO
+qsub qsub_01.sh
 ```
 
 ## Tips

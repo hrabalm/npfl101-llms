@@ -68,6 +68,7 @@ sft_config = SFTConfig(
 trainer = SFTTrainer(
     model,
     train_dataset=dataset,
+    dataset_text_field="text",
     args=sft_config,
     peft_config=peft_config,
 )

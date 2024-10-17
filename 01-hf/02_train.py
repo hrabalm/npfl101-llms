@@ -3,7 +3,6 @@ from datasets import load_dataset, load_from_disk
 from trl import SFTConfig, SFTTrainer
 from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
 import torch
-import os
 
 DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset"  # TODO: dataset name
 
@@ -46,3 +45,6 @@ trainer = SFTTrainer(
 )
 
 trainer.train()
+
+model.save_to_disk("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model")
+# you can also push the model to hub, see docs

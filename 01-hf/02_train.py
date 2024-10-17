@@ -9,6 +9,18 @@ DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset
 dataset = load_from_disk(DATASET_PATH)
 # dataset = load_dataset("username/datasetname", split="train")  # you can also download the dataset from hub instead
 
+# Our dataset is not in the format that SFTTrainer expects, see
+# https://huggingface.co/docs/trl/dataset_formats
+# So we need to preprocess our dataset
+
+def preprocess_function(examples):
+    # note the token used at the end depends on the model we are training
+    EOS = "<eos>"
+    return {
+        "text": f"Translate the following Czech sentence to English.\nCzech: {examples["source_text"]}\nEnglish: {examples["target_text"]}{EOS}",
+    }
+dataset = dataset.map(preprocess_function)
+
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",

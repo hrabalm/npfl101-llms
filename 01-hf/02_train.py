@@ -86,3 +86,4 @@ model.save_pretrained("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_mo
 # - Add evaluation dataset, set eval_steps and eval_strategy
 # - Import wandb and log the training to wandb
 # - Go through the documentation https://huggingface.co/docs/trl/main/sft_trainer
+# - Initialize QLoRA weights using LoftQ, see https://huggingface.co/docs/peft/developer_guides/quantization#loftq-initialization

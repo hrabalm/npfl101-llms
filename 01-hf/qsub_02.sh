@@ -6,7 +6,7 @@
 #PBS -m bae
 # mail on begin, abort, end
 
-source "$SCRIPT_DIR/common.sh"
+source "$PBS_O_WORKDIR/common.sh"
 
 FILE="$SCRIPT_DIR/02_train.py"
 "$PYTHON" "$FILE"

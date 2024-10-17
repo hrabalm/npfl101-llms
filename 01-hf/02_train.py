@@ -46,7 +46,11 @@ peft_config = LoraConfig(
 model = get_peft_model(model, peft_config)
 
 sft_config = SFTConfig(
-    output_dir="/tmp"
+    num_train_epochs=2,
+    per_device_train_batch_size=1,
+    # gradient_accumulation_steps=1,  # can be used to simulate larger batch sizes
+    output_dir="/tmp",
+    # gradient_checkpointing=True,  # save VRAM at the cost of computation time
 )
 
 trainer = SFTTrainer(
@@ -60,3 +64,8 @@ trainer.train()
 
 model.save_to_disk("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model")
 # you can also push the model to hub, see docs
+
+# Optional exercises:
+# - Currently, we train the model by calculating the loss on all tokens (including the prompt). See https://huggingface.co/docs/trl/main/sft_trainer#train-on-completions-only for an example of how to train only on the completions.
+# - Try training on different or larger models
+# - Try to disable the quantization if the model is small enough

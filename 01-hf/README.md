@@ -57,7 +57,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 Create a conda prefix with Python 3.11 and PyTorch
 
 ```bash
-~/miniforge3/bin/mamba create --prefix=~/envs/npfl101demo pytorch torchvision torchaudio pytorch-cuda=12.1 ipython -c pytorch -c nvidia
+~/miniforge3/bin/mamba create --prefix=~/envs/npfl101demo python=3.11 pytorch torchvision torchaudio pytorch-cuda=12.1 ipython -c pytorch -c nvidia
 ```
 
 Install pip packages

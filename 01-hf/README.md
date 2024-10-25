@@ -6,9 +6,9 @@
 
 I tried to make the instructions a bit more clear and also cover a few key points I forgot to mention during the lab. I also install a few more packages (e.g. `flash-attn`) which can help some models use more efficient implementation of attention mechanism to save some computational time and decrease VRAM usage.
 
-If you want to install the updated environment, the easiest way is to remove the whole prefix (e.g. `rm -rf ~/envs/npfl101demo`) and install it again, because sometimes packages don't support the newest versions of other packages, a common example would be the newest PyTorch.
+If you want to install the updated environment, the easiest way is to remove the whole prefix (e.g. `rm -rf ~/envs/npfl101demo`) and install it again, because sometimes packages don't support the newest versions of other packages. A common example would be the newest version of PyTorch which is often not supported for a while until developers catch up.
 
-You should also take the look at the new information about accessing the gated models. I have forgotten to mention this during the lab.
+You should also take a look at the new information about accessing the gated models. I have forgotten to mention this during the lab.
 
 ## Introduction
 

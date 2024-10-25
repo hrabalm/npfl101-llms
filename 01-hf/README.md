@@ -56,7 +56,7 @@ You should see something like this:
 
 You should take a note of this directory, because it is where we will be installing Miniforge3 and Conda environment.
 
-If you are running this inside an interactive job (see above), you should also export set the `TMPDIR` variable so that it points to the scratch folder. This means that the temporary files created during installation will use the fast local storage you asked for instead of `/tmp` directory that has relatively low usage limit.
+If you are running this inside an interactive job (see above), you should also export the `TMPDIR` variable so that it points to the scratch folder. This means that the temporary files created during installation will use the fast local storage you asked for instead of `/tmp` directory that has relatively low usage limit (often ~1GB).
 
 ```bash
 # only when running inside interactive job!

@@ -8,5 +8,6 @@ else
     echo "Secrets file not found: $SECRETS_FILE"
 fi
 
+# TODO: ensure that the PYTHON variable is set to the correct Python interpreter (in the conda environment you have installed earlier)
 export PYTHON="/storage/brno2/home/hrabalm/envs/npfl101demo/bin/python"
 export SCRIPT_DIR="$PBS_O_WORKDIR"

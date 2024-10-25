@@ -24,13 +24,13 @@ As a small note, Metacentrum uses Kerberos for authentication, so using just `ss
 
 In case you are or some packages are compiled from source, installation can take a long time and need more resources such as CPUs, RAM or scratch storage for temporary files.
 
-In that case you can ask for an interactive task. In this case, notice that we also specify the city explicitly so that the remote storage we manipulate is part of the same cluster.
+In that case you can ask for an interactive task. In this case, notice that we also specify the city explicitly so that the remote storage we manipulate is part of the same cluster. That is because installation to NFS storage mounted over the internet could be much slower.
 
 ```bash
 qsub -l select=1:ncpus=1:mem=8gb:scratch_local=16gb:brno=True -I -l walltime=1:00:00
 ```
 
-Instead of city, we could also specify the exact cluster of nodes, by replacing `brno=True` by for example `cl_galdor=True`:
+Instead of city, we could also specify the exact cluster of nodes. For example, we can replace `brno=True` by `cl_galdor=True` to use the `galdor` machines.
 
 ## Install
 

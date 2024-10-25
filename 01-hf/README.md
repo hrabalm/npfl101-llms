@@ -20,8 +20,6 @@ ssh USERNAME@zenith.metacentrum.cz
 
 As a small note, Metacentrum uses Kerberos for authentication, so using just `ssh-copy-id` unfortunately does not work. See [here](https://docs.metacentrum.cz/access/kerberos/) for instructions.
 
-In each of the Python scripts, I propose some optional exercises and things you might want to look into, depending on what can be useful for your project.
-
 ## Interactive jobs
 
 In case you are or some packages are compiled from source, installation can take a long time and need more resources such as CPUs, RAM or scratch storage for temporary files.
@@ -128,6 +126,8 @@ qsub qsub_01.sh
 After the job finished, it will create two files in the directory you were enqueueing them from, which capture the standard and error outputs of the job. For checking the progress while it is running, check the Tips section and [relevant docs](https://docs.metacentrum.cz/computing/job-tracking/).
 
 Once again, you should go through (or at least skim through) the offical documentation, because there's much I was not able to cover here.
+
+Also, in each of the Python scripts, I propose some optional exercises and things you might want to look into, depending on what can be useful for your project.
 
 ## Tips
 

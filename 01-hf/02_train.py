@@ -7,7 +7,7 @@ import torch
 DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset"  # TODO: change dataset name
 
 MODEL = "utter-project/EuroLLM-1.7B"
-# If you have succesfully setup your Huggingface account and access tokens, you
+# If you have succesfully set up your Huggingface account and access tokens, you
 # can also use some gated model you have been given access to, for example
 # Mistral-7b-v0.3, Gemma-2-2b or Llama3.1.
 # You should check their pages on HF first and check that you have access to

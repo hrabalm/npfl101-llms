@@ -39,6 +39,7 @@ def preprocess_function(examples):
 dataset = dataset.map(preprocess_function)
 # alternative, you can pass formatting_function to SFTTrainer, see https://huggingface.co/docs/trl/main/sft_trainer#format-your-input-prompts
 
+# In this example, we show how to setup 4-bit quantization - but you might be able to get away without quantization for smaller models or LoRA ranks, depending on your VRAM
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",

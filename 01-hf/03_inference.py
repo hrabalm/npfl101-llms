@@ -7,8 +7,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import sys
 
-# MODEL = "/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model"
-MODEL = "google/gemma-2-2b"
+# TODO: Choose a model you want to use
+MODEL = "utter-project/EuroLLM-1.7B"
+# MODEL = "/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model"  # you can use models saved locally
+# MODEL = "/storage/brno12-cerit/home/hrabalm/models/another-model/checkpoint-200"  # you can also load a checkpoint in the same way
+# MODEL = "google/gemma-2-2b"
 
 print(f"Using model {MODEL}", file=sys.stderr)
 

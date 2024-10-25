@@ -3,7 +3,7 @@ import datasets
 import sys
 
 username = "hrabalm"  # TODO: update username
-my_datasets = Path(f"/storage/brno12-cerit/home/{username}/datasets")
+my_datasets = Path(f"/storage/brno2/home/{username}/datasets")
 my_datasets.mkdir(exist_ok=True, parents=True) # ensure directory exists
 
 eng = Path("./data/small.eng")

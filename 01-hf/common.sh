@@ -8,5 +8,5 @@ else
     echo "Secrets file not found: $SECRETS_FILE"
 fi
 
-export PYTHON="/storage/brno12-cerit/home/hrabalm/envs/npfl101demo/bin/python"
+export PYTHON="/storage/brno2/home/hrabalm/envs/npfl101demo/bin/python"
 export SCRIPT_DIR="$PBS_O_WORKDIR"

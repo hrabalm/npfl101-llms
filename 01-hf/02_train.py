@@ -6,6 +6,23 @@ import torch
 
 DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset"  # TODO: change dataset name
 
+MODEL = "utter-project/EuroLLM-1.7B"
+# If you have succesfully setup your Huggingface account and access tokens, you
+# can also use some gated model you have been given access to, for example
+# Mistral-7b-v0.3, Gemma-2-2b or Llama3.1.
+# You should check their pages on HF first and check that you have access to
+# to them.
+# https://huggingface.co/google/gemma-2-2b
+# https://huggingface.co/mistralai/Mistral-7B-v0.3
+# https://huggingface.co/meta-llama/Llama-3.1-8B
+
+# MODEL = "google/gemma-2-2b"
+
+# Note that if you use larger models, you might have to check adjust the batch
+# size so that the models fit the the GPU VRAM you specify in qsub_*.sh files.
+
+OUTPUT_DIRECTORY = "/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model"  # TODO: change output directory
+
 dataset = load_from_disk(DATASET_PATH)
 # dataset = load_dataset("username/datasetname", split="train")  # you can also download the dataset from hub instead
 
@@ -30,7 +47,7 @@ bnb_config = BitsAndBytesConfig(
 )
 
 model = AutoModelForCausalLM.from_pretrained(
-    "google/gemma-2-2b",
+    MODEL,
     quantization_config=bnb_config,
 )
 model = prepare_model_for_kbit_training(model)
@@ -57,7 +74,7 @@ sft_config = SFTConfig(
     warmup_steps=10,
     logging_steps=1,
     num_train_epochs=2,
-    per_device_train_batch_size=1,
+    per_device_train_batch_size=1,  # you should try to increase this as much as possible while still avoiding out of memory errors
     # gradient_accumulation_steps=1,  # can be used to simulate larger batch sizes
     output_dir=".",  # where to save the model checkpoints
     # gradient_checkpointing=True,  # save VRAM at the cost of computation time
@@ -76,7 +93,8 @@ trainer = SFTTrainer(
 
 trainer.train()
 
-model.save_pretrained("/storage/brno12-cerit/home/hrabalm/models/npfl101_test_model")
+model.save_pretrained(OUTPUT_DIRECTORY)
+
 # you can also push the model to hub, see docs
 
 # Optional exercises:

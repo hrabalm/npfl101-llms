@@ -12,7 +12,7 @@ You should also take a look at the new information about accessing the gated mod
 
 ## 20241106
 
-Remove `flash-attn` requirements, as it breaks PyTorch/CUDA versions.
+Remove `flash-attn` conda package from the requirements, as it breaks PyTorch/CUDA versions.
 
 ## Introduction
 

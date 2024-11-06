@@ -10,6 +10,10 @@ If you want to install the updated environment, the easiest way is to remove the
 
 You should also take a look at the new information about accessing the gated models. I have forgotten to mention this during the lab.
 
+## 20241106
+
+Remove `flash-attn` requirements, as it breaks PyTorch/CUDA versions.
+
 ## Introduction
 
 For these examples, please use the zenith frontend which is located in Brno and uses brno12-cerit storage.
@@ -69,7 +73,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 Create a conda prefix with Python 3.11 and PyTorch
 
 ```bash
-~/miniforge3/bin/mamba create --prefix=~/envs/npfl101demo python=3.11 pytorch torchvision torchaudio pytorch-cuda=12.1 ipython cuda-python cuda-nvcc=12.1 xformers::xformers flash-attn -c pytorch -c nvidia
+~/miniforge3/bin/mamba create --prefix=~/envs/npfl101demo python=3.11 pytorch torchvision torchaudio pytorch-cuda=12.1 ipython cuda-python cuda-nvcc=12.1 xformers::xformers -c pytorch -c nvidia
 ```
 
 Install pip packages

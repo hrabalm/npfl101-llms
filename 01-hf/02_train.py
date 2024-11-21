@@ -1,4 +1,4 @@
-from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from datasets import load_dataset, load_from_disk
 from trl import SFTConfig, SFTTrainer
 from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
@@ -30,9 +30,11 @@ dataset = load_from_disk(DATASET_PATH)
 # https://huggingface.co/docs/trl/dataset_formats
 # So we need to preprocess our dataset
 
+tokenizer = AutoTokenizer.from_pretrained(MODEL)
+
 def preprocess_function(examples):
     # note the token used at the end depends on the model we are training
-    EOS = "<eos>"
+    EOS = tokenizer.eos_token
     return {
         "text": f"Translate the following Czech sentence to English.\nCzech: {examples["source_text"]}\nEnglish: {examples["target_text"]}{EOS}",
     }
@@ -86,6 +88,7 @@ sft_config = SFTConfig(
 
 trainer = SFTTrainer(
     model,
+    tokenizer=tokenizer,
     train_dataset=dataset,
     dataset_text_field="text",
     args=sft_config,

@@ -3,6 +3,7 @@ from datasets import load_dataset, load_from_disk
 from trl import SFTConfig, SFTTrainer
 from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
 import torch
+import sys
 
 DATASET_PATH = "/storage/brno12-cerit/home/hrabalm/datasets/npfl101_test_dataset"  # TODO: change dataset name
 
@@ -31,6 +32,20 @@ dataset = load_from_disk(DATASET_PATH)
 # So we need to preprocess our dataset
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL)
+if tokenizer.pad_token is None:
+    if tokenizer.unk_token is not None:
+        # Workaround for missing pad_token. We can't really use eos_token here, because it will then be masked and won't
+        # contribute to the loss, unless we remember to override attention_mask. Other ways of handling this could be
+        # reusing another reserved token (not all models have them) or by calling add_special_tokens, see docs. In that
+        # case however, you also have to resize the embeddings and probably also train them.
+
+        # You can also check how unsloth project handles it:
+        # https://github.com/unslothai/unsloth-zoo/blob/f889b058c00fb06dac60a2c51d24ca441e505f3c/unsloth_zoo/tokenizer_utils.py#L436
+        tokenizer.pad_token = tokenizer.unk_token
+        print(f"Warning: Missing pad_token. Setting pad_token to unk_token as a workaround.", file=sys.stderr)
+    else:
+        raise Exception("Model's tokenizer is mising both pad_token and unk_token. You need to handle it manually.")
+
 
 def preprocess_function(examples):
     # note the token used at the end depends on the model we are training

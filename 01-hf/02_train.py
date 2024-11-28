@@ -51,7 +51,7 @@ def preprocess_function(examples):
     # note the token used at the end depends on the model we are training
     EOS = tokenizer.eos_token
     return {
-        "text": f"Translate the following Czech sentence to English.\nCzech: {examples["source_text"]}\nEnglish: {examples["target_text"]}{EOS}",
+        "text": f'Translate the following Czech sentence to English.\nCzech: {examples["source_text"]}\nEnglish: {examples["target_text"]}{EOS}',
     }
 dataset = dataset.map(preprocess_function)
 # alternative, you can pass formatting_function to SFTTrainer, see https://huggingface.co/docs/trl/main/sft_trainer#format-your-input-prompts

@@ -79,7 +79,7 @@ Create a conda prefix with Python 3.11 and PyTorch
 Install pip packages
 
 ```bash
-~/envs/npfl101demo/bin/pip install --no-cache-dir transformers datasets wandb pandas trl peft bitsandbytes
+~/envs/npfl101demo/bin/pip install --no-cache-dir transformers datasets wandb pandas trl peft bitsandbytes sentencepiece
 ```
 
 If running in an interactive job, you should also always clean the scratch.

@@ -22,7 +22,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 input_text = f"Translate the following Czech sentence to English.\nCzech: Praha je hlavní město Česka.\nEnglish:"
-input_ids = tokenizer(input_text, return_tensors="pt").to("cuda")
+input_ids = tokenizer([input_text], return_tensors="pt").to("cuda")
 
 outputs = model.generate(**input_ids, max_new_tokens=32)
 print(tokenizer.decode(outputs[0]), file=sys.stderr)

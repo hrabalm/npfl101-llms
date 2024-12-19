@@ -1,0 +1,21 @@
+Prague is a political, cultural, and economic hub of Central Europe, with a rich history and Romanesque, Gothic, Renaissance and Baroque architectures.
+It was the capital of the Kingdom of Bohemia and residence of several Holy Roman Emperors, most notably Charles IV (r. 1346–1378) and Rudolf II (r. 1575–1611).
+It was an important city to the Habsburg monarchy and Austria-Hungary.
+The city played major roles in the Bohemian and the Protestant Reformations, the Thirty Years' War and in 20th-century history as the capital of Czechoslovakia between the World Wars and the post-war Communist era.
+Data structures
+Sequence types in Common Lisp include lists, vectors, bit-vectors, and strings.
+There are many operations that can work on any sequence type.
+As in almost all other Lisp dialects, lists in Common Lisp are composed of conses, sometimes called cons cells or pairs.
+A cons is a data structure with two slots, called its car and cdr.
+A list is a linked chain of conses or the empty list.
+Each cons's car refers to a member of the list (possibly another list).
+Each cons's cdr refers to the next cons—except for the last cons in a list, whose cdr refers to the nil value.
+Conses can also easily be used to implement trees and other complex data structures; though it is usually advised to use structure or class instances instead.
+It is also possible to create circular data structures with conses.
+Common Lisp supports multidimensional arrays, and can dynamically resize adjustable arrays if required.
+Multidimensional arrays can be used for matrix mathematics.
+A vector is a one-dimensional array.
+Arrays can carry any type as members (even mixed types in the same array) or can be specialized to contain a specific type of members, as in a vector of bits.
+Usually, only a few types are supported.
+Many implementations can optimize array functions when the array used is type-specialized.
+Two type-specialized array types are standard: a string is a vector of characters, while a bit-vector is a vector of bits.

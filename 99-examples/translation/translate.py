@@ -1,13 +1,15 @@
 import click
+from tqdm import tqdm
 
 def apply_template(text: str, src_lang: str, tgt_lang: str, template: str):
     return template.format(text=text, src_lang=src_lang, tgt_lang=tgt_lang)
 
 class HFModel:
     def __init__(self, model_name_or_path, model_kwargs={}, tokenizer_kwargs={}):
-        from transformers import AutoTokenizer, AutoModelForCausalLM
+        from transformers import AutoTokenizer
+        from peft import AutoPeftModelForCausalLM
 
-        self.model = AutoModelForCausalLM.from_pretrained(
+        self.model = AutoPeftModelForCausalLM.from_pretrained(
             model_name_or_path, **model_kwargs
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
@@ -109,7 +111,7 @@ Translate Input from English to Japanese
 def cli(input, output, model):
     model = Model(model, WMT24_TEMPLATE)
 
-    inputs = [x.rstrip(["\n"]) for x in input.readlines()]
+    inputs = [x.rstrip("\n") for x in input.readlines()]
     outputs = model.translate(inputs)
 
     for tgt in outputs:

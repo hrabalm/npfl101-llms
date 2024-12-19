@@ -1,13 +1,22 @@
 import click
 from tqdm import tqdm
 
+TEMPLATE = """### Instruction
+Translate Input from English to Japanese
+### Input
+{text}
+### Response
+"""
+
+
 def apply_template(text: str, src_lang: str, tgt_lang: str, template: str):
     return template.format(text=text, src_lang=src_lang, tgt_lang=tgt_lang)
 
+
 class HFModel:
     def __init__(self, model_name_or_path, model_kwargs={}, tokenizer_kwargs={}):
-        from transformers import AutoTokenizer
         from peft import AutoPeftModelForCausalLM
+        from transformers import AutoTokenizer
 
         self.model = AutoPeftModelForCausalLM.from_pretrained(
             model_name_or_path, **model_kwargs
@@ -72,7 +81,9 @@ class HFModel:
                 try:
                     batch = prompts_queue[:batch_size]
                     set_seed(seed)
-                    partial_outputs = self._generate(batch, max_new_tokens=max_new_tokens)
+                    partial_outputs = self._generate(
+                        batch, max_new_tokens=max_new_tokens
+                    )
                     outputs.extend(partial_outputs)
                     prompts_queue = prompts_queue[batch_size:]
                     pbar.update(batch_size)
@@ -86,36 +97,40 @@ class HFModel:
         assert len(prompts) == len(outputs)
         return outputs
 
+
 class Model:
     def __init__(self, model_path, template):
         import torch
-        self._model = HFModel(model_path, model_kwargs={"torch_dtype": torch.bfloat16, "device_map": "cuda"})
+
+        self._model = HFModel(
+            model_path,
+            model_kwargs={"torch_dtype": torch.bfloat16, "device_map": "cuda"},
+        )
         self._template = template
 
     def translate(self, inputs: list[str]):
-        formatted_inputs = [apply_template(text, "", "", self._template) for text in inputs]
-        outputs = self._model.generate(formatted_inputs, max_new_tokens=128, max_batch_size=512)
+        formatted_inputs = [
+            apply_template(text, "", "", self._template) for text in inputs
+        ]
+        outputs = self._model.generate(
+            formatted_inputs, max_new_tokens=128, max_batch_size=512
+        )
         return outputs
 
-WMT24_TEMPLATE = """### Instruction
-Translate Input from English to Japanese
-### Input
-{text}
-### Response
-"""
 
 @click.command()
 @click.option("--input", "-i", type=click.File("r"), required=True)
 @click.option("--output", "-o", type=click.File("w", lazy=True), required=True)
 @click.option("--model", "-m", required=True)
 def cli(input, output, model):
-    model = Model(model, WMT24_TEMPLATE)
+    model = Model(model, TEMPLATE)
 
     inputs = [x.rstrip("\n") for x in input.readlines()]
     outputs = model.translate(inputs)
 
     for tgt in outputs:
         output.write(f"{tgt}\n")
+
 
 if __name__ == "__main__":
     cli()

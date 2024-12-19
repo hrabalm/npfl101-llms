@@ -14,6 +14,6 @@ export SCRIPT_DIR="$PBS_O_WORKDIR"
 
 
 cd "$SCRIPT_DIR"  # note that in some cases this can affect performance, depending on how the cwd is used
-"$PYTHON" "$FILE" -i "test.en" -o "test.ja" -m "/storage/brno12-cerit/home/hrabalm/checkpoints/20241118_granite_sft_run8_completions_tied_dropout_decoupled/checkpoint-90000"
+"$PYTHON" translate.py -i "test.en" -o "test.ja" -m "/storage/brno12-cerit/home/hrabalm/checkpoints/20241118_granite_sft_run8_completions_tied_dropout_decoupled/checkpoint-90000"
 
 clean_scratch

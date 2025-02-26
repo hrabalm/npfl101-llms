@@ -22,7 +22,7 @@ For these examples, please use the zenith frontend which is located in Brno and 
 ssh USERNAME@zenith.metacentrum.cz
 ```
 
-As a small note, Metacentrum uses Kerberos for authentication, so using just `ssh-copy-id` unfortunately does not work. See [here](https://docs.metacentrum.cz/access/kerberos/) for instructions.
+As a small note, Metacentrum uses Kerberos for authentication, so using just `ssh-copy-id` unfortunately does not work. See [here](https://docs.metacentrum.cz/access/kerberos/) for instructions on passwordless login if you are interested in getting it to work later.
 
 ## Interactive jobs
 
